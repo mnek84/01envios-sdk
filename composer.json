@@ -1,0 +1,28 @@
+{
+    "name": "intrasistema/logsdk",
+    "description": "Logistica SDK",
+    "type": "library",
+    "keywords": [
+        "intrasistema",
+        "php",
+        "sdk",
+        "rest",
+        "api"
+    ],
+    "authors": [
+        {
+            "name": "maximiliano",
+            "email": "mnek84@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "guzzlehttp/guzzle": "^6.2.1"
+    },
+    "autoload": {
+        "psr-4": { "LogisticaSdk\\" : "src/" }
+    }
+}
