@@ -4,7 +4,7 @@ include '../vendor/autoload.php';
 
 $sdk = new \LogisticaSdk\Logistica();
 
-$sdk->setToken("abc123");
+$sdk->setToken("2835754040x");
 
 try {
   $drivers = $sdk->getDrivers();
@@ -17,8 +17,12 @@ try {
     }
   }
 } catch (\LogisticaSdk\ApiException $e) {
-  dd($e->getMessage());
+  die($e->getMessage());
+
+} catch (\Exception $e) {
+  die($e->getMessage());
 }
+
 
 
 
