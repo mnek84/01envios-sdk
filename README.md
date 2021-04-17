@@ -1,29 +1,33 @@
-# README #
+# Logistica SDK
 
-Logistica SDK
+[![Latest Stable Version](https://img.shields.io/packagist/v/intrasistema/logsdk.svg?style=flat-square)](https://packagist.org/packages/intrasistema/logsdk)
+[![Total Downloads](https://img.shields.io/packagist/dt/intrasistema/logsdk.svg?style=flat-square)](https://packagist.org/packages/intrasistema/logsdk)
 
-### What is this repository for? ###
+Librareria para la gestión de Logistica de 01envios
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+```php
+<?php
 
-### How do I get set up? ###
+use LogisticaSdk\Logistica;
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+$sdk = new Logistica();
 
-### Contribution guidelines ###
+$sdk->setToken("abc123");
 
-* Writing tests
-* Code review
-* Other guidelines
+```
 
-### Who do I talk to? ###
+## Instalación
 
-* Repo owner or admin
-* Other community or team contact
+### Composer
+
+```
+$ composer require intrasistema/logsdk
+```
+
+```json
+{
+    "require": {
+        "intrasistema/logsdk": "dev-master"
+    }
+}
+```

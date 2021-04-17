@@ -2,6 +2,10 @@
     "name": "intrasistema/logsdk",
     "description": "Logistica SDK",
     "type": "library",
+    "homepage": "https://01envios.com",
+    "license": "MIT",
+    "prefer-stable": true,
+    "minimum-stability": "dev",
     "keywords": [
         "intrasistema",
         "php",

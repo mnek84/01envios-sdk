@@ -7,12 +7,13 @@ $sdk = new \LogisticaSdk\Logistica();
 $sdk->setToken("2835754040");
 
 try {
-  $drivers = $sdk->getDrivers();
-  if ($drivers)
+  $shipmentHistory = $sdk->traceShipment(34794766800);
+
+  if ($shipmentHistory)
   {
-    foreach($drivers as $driver)
+    foreach($shipmentHistory as $info)
     {
-      echo "Driver:#".$driver['fullname'];
+      echo "Status:".$info['status']." - ".( ($info['status_info'])?$info['status_info']['name']:'Unknown' ).chr(13).chr(10);
     }
   }
 } catch (\LogisticaSdk\ApiException $e) {
