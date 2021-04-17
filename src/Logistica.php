@@ -145,6 +145,24 @@ class Logistica
   }
 
 
+  /**
+   * @param $ep
+   * @return mixed
+   * @throws ApiException
+   */
+  public function get($ep)
+  {
+    $client = $this->getClient();
+
+    $response = $client->get($ep, [
+      'debug' => FALSE,
+      'headers' => [
+        'Content-Type' => 'application/x-www-form-urlencoded',
+      ]
+    ]);
+    return $this->getResponse($response);
+  }
+
 
 
 }
