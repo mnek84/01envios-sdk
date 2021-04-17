@@ -12,8 +12,8 @@ use Psr\Http\Message\ResponseInterface;
 
 class Logistica
 {
-  #const API = 'https://logistics-api.intrasistema.com/v1/';
-  const API = 'http://logistics.local/v1/';
+  const API = 'https://logistics-api.intrasistema.com/v1/';
+  #const API = 'http://logistics.local/v1/';
   private $token;
 
   private function getClient()
