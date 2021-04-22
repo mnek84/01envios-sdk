@@ -62,6 +62,13 @@ class Logistica
 
     if ($response->getStatusCode()==200)
     {
+      if (!isset($data['status']))
+      {
+        //BAD RESPONSE
+        var_dump($data);
+        throw new ApiException("Bad Response");
+      }
+
       if ($data['status']==1)
       {
         return $data['data'];
@@ -147,22 +154,42 @@ class Logistica
 
   /**
    * @param $ep
+   * @param null $params
    * @return mixed
    * @throws ApiException
    */
-  public function get($ep)
+  public function get($ep,$params=null)
   {
     $client = $this->getClient();
 
-    $response = $client->get($ep, [
+    $defaultData = [
       'debug' => FALSE,
       'headers' => [
         'Content-Type' => 'application/x-www-form-urlencoded',
       ]
-    ]);
+    ];
+
+    if ($params)
+      $defaultData['query'] = $params;
+
+    $response = $client->get($ep, $defaultData);
+
     return $this->getResponse($response);
   }
 
+  public function getShippingList($tracking=null, $driver=null, $statuses=null,$from=null,$to=null, $paginated=null, $page=null,$clientId=null)
+  {
+    return $this->get("shipments",[
+      'search'=>$tracking,
+      'client_id'=>$clientId,
+      'driver'=>$driver,
+      'statuses'=>$statuses,
+      'from'=>$from,
+      'to'=>$to,
+      'limit'=>$paginated,
+      'page'=>$page
+    ]);
+  }
 
 
 }

@@ -103,3 +103,49 @@ try {
 }
 
 ```
+
+### Ejecutar Manal un EP
+```php
+<?php
+
+$sdk = new \LogisticaSdk\Logistica();
+$shipments = $sdk->get("shipments",['param1'=>1])
+```
+
+
+### Listado de Shipments
+##### Ver en Examples/tracking.php
+```php
+<?php
+  $tracking = null; // Busca por Numero de Tracking o Control Externo
+  $driver = [1,15]; // ID de Chofer ó Array de Choferes
+  $statuses = null; // ID De estado o Array de Estados
+  $limit = 10; //Cantidad de Datos por pagina, si es NULL no pagina.
+  $page = 1; //Que pagina quiero ver
+
+  $data = $sdk->getShippingList(
+      $tracking,
+      $driver,
+      $statuses,
+      null, //Desde
+      null, //Hasta
+      $limit,
+      $page,
+    null
+
+  );
+
+  //Información de Páginacion Si $limit no es null.
+
+  // $data['current_page'] = Pagina Actual
+  // $data['per_page'] = Cantidad COnfigurada en Limit
+  // $data['from'] = Pagina
+  // $data['to'] = pagina
+  // $data['last_page'] = Ultima Página
+  // $data['links'] = Links de pagina | Solo si es Paginador Manual
+  // $data['total'] = Total De Elementos
+
+  //$data['data'] = Array de Elementos
+  
+  var_dump($data['data']);
+```
