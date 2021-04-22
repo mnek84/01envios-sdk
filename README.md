@@ -149,3 +149,14 @@ $shipments = $sdk->get("shipments",['param1'=>1])
   
   var_dump($data['data']);
 ```
+
+### Ver un Tracking y Historia
+##### Ver en Examples/ver_tracking.php
+```php
+ $tracking = 114626706437;
+  // Información de un Tracking
+  $info = $sdk->get("shipping",['shipping'=>'114626706437','history'=>1,'order'=>'LATEST']);
+  print $info['owner_fullname'];
+
+  var_dump($info['history']);
+```
