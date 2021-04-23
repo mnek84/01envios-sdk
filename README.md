@@ -122,6 +122,8 @@ $shipments = $sdk->get("shipments",['param1'=>1])
   $statuses = null; // ID De estado o Array de Estados
   $limit = 10; //Cantidad de Datos por pagina, si es NULL no pagina.
   $page = 1; //Que pagina quiero ver
+  $orderBY = 'owner_fullname'; #'id','tracking_number','owner_fullname','locality','province','country','zipcode','warehouse_origin_id','current_status','external_value'
+  $orderType = 'desc'; #ASC , DESC
 
   $data = $sdk->getShippingList(
       $tracking,
@@ -131,8 +133,9 @@ $shipments = $sdk->get("shipments",['param1'=>1])
       null, //Hasta
       $limit,
       $page,
-    null
-
+      null,
+      $orderBY,
+      $orderType
   );
 
   //Información de Páginacion Si $limit no es null.

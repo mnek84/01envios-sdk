@@ -10,8 +10,10 @@ try {
   $tracking = null; // Busqueda
   $driver = [1,15]; // 1 ó [1,3]
   $statuses = null; // 1 ó [1,3]
-  $limit = 10; //Null para que no pagine
+  $limit = 1; //Null para que no pagine
   $page = 1;
+  $orderBY = 'owner_fullname'; #'id','tracking_number','owner_fullname','locality','province','country','zipcode','warehouse_origin_id','current_status','external_value'
+  $orderType = 'desc'; #ASC , DESC
 
   $data = $sdk->getShippingList(
       $tracking,
@@ -21,7 +23,9 @@ try {
       null,
       $limit,
       $page,
-    null
+    null,
+    $orderBY,
+    $orderType
 
   );
 

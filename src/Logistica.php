@@ -14,6 +14,7 @@ class Logistica
 {
   const API = 'https://logistics-api.intrasistema.com/v1/';
   #const API = 'http://logistics.local/v1/';
+
   private $token;
 
   private function getClient()
@@ -65,7 +66,7 @@ class Logistica
       if (!isset($data['status']))
       {
         //BAD RESPONSE
-        var_dump($data);
+        var_dump($body);
         throw new ApiException("Bad Response");
       }
 
@@ -177,7 +178,7 @@ class Logistica
     return $this->getResponse($response);
   }
 
-  public function getShippingList($tracking=null, $driver=null, $statuses=null,$from=null,$to=null, $paginated=null, $page=null,$clientId=null)
+  public function getShippingList($tracking=null, $driver=null, $statuses=null,$from=null,$to=null, $paginated=null, $page=null,$clientId=null,$orderBy="id",$orderType='ASC')
   {
     return $this->get("shipments",[
       'search'=>$tracking,
@@ -187,7 +188,9 @@ class Logistica
       'from'=>$from,
       'to'=>$to,
       'limit'=>$paginated,
-      'page'=>$page
+      'page'=>$page,
+      'orderby'=>$orderBy,
+      'ordertype'=>$orderType,
     ]);
   }
 
