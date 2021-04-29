@@ -10,7 +10,7 @@ try {
   $tracking = null; // Busqueda
   $driver = [1,15]; // 1 ó [1,3]
   $statuses = null; // 1 ó [1,3]
-  $limit = 1; //Null para que no pagine
+  $limit = null; //Null para que no pagine
   $page = 1;
   $orderBY = 'owner_fullname'; #'id','tracking_number','owner_fullname','locality','province','country','zipcode','warehouse_origin_id','current_status','external_value'
   $orderType = 'desc'; #ASC , DESC
@@ -42,7 +42,11 @@ try {
 
   if ($limit)
   {
-    var_dump($data['data']);
+    #var_dump($data['data']);
+    $first = $data['data'][0];
+
+    $first['created_at'];
+
 
   }else{
 

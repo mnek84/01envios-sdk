@@ -83,21 +83,17 @@ class Logistica
   }
 
   /**
+   * @param null $search
    * @return false|mixed
    * @throws ApiException
    */
-  public function getDrivers()
+  public function getDrivers($search=null)
   {
-    $client = $this->getClient();
+    $params = [];
+    if ($search)
+      $params['search'] =  $search;
 
-    $response = $client->get('driver', [
-      'debug' => FALSE,
-      'headers' => [
-        'Content-Type' => 'application/x-www-form-urlencoded',
-      ]
-    ]);
-
-    return $this->getResponse($response);
+    return $this->get("driver",$params);
   }
 
   public function findShipping($trackingNumber)
