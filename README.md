@@ -43,7 +43,7 @@ $sdk = new \LogisticaSdk\Logistica();
 $sdk->setToken("TOKEN");
 
 try {
-  $drivers = $sdk->getDrivers("PATENTE,NOMBRE ó CODIGO");
+  $drivers = $sdk->getDrivers("PATENTE,NOMBRE ó CODIGO",1,10);
   if ($drivers)
   {
     foreach($drivers as $driver)

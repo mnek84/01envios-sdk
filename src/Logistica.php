@@ -83,15 +83,23 @@ class Logistica
   }
 
   /**
-   * @param null $search
+   * @param $search
+   * @param $page
+   * @param $perPage
    * @return false|mixed
    * @throws ApiException
    */
-  public function getDrivers($search=null)
+  public function getDrivers($search=null,$page=null,$perPage=null)
   {
     $params = [];
     if ($search)
       $params['search'] =  $search;
+
+    if ($page)
+    {
+      $params['page'] = $page;
+      $params['limit'] = ($perPage)?$perPage:10;
+    }
 
     return $this->get("driver",$params);
   }
