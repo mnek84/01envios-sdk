@@ -72,7 +72,12 @@ class Logistica
 
       if ($data['status']==1)
       {
-        return $data['data'];
+        if (isset($data['data']))
+        {
+          return $data['data'];
+        }else{
+          return true;
+        }
 
       }else{
         throw new ApiException($data['error']);
@@ -178,6 +183,59 @@ class Logistica
       $defaultData['query'] = $params;
 
     $response = $client->get($ep, $defaultData);
+
+    return $this->getResponse($response);
+  }
+
+  /**
+   * @param $ep
+   * @param null $params
+   * @return mixed
+   * @throws ApiException
+   */
+  public function post($ep,$params=null)
+  {
+    $client = $this->getClient();
+
+    $defaultData = [
+      'debug' => FALSE,
+      'headers' => [
+        'Content-Type' => 'application/x-www-form-urlencoded',
+      ]
+    ];
+
+    if ($params)
+      $defaultData['query'] = $params;
+
+    $response = $client->post($ep, $defaultData);
+
+
+    return $this->getResponse($response);
+  }
+
+  /**
+   * @param $ep
+   * @param null $params
+   * @return mixed
+   * @throws ApiException
+   */
+  public function put($ep,$params=null)
+  {
+    $client = $this->getClient();
+
+    $defaultData = [
+      'debug' => FALSE,
+      'headers' => [
+        'Content-Type' => 'application/x-www-form-urlencoded',
+      ]
+    ];
+
+    if ($params)
+      $defaultData['query'] = $params;
+
+
+    $response = $client->put($ep, $defaultData);
+
 
     return $this->getResponse($response);
   }
