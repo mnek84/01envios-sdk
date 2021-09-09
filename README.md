@@ -163,3 +163,6 @@ $shipments = $sdk->get("shipments",['param1'=>1])
 
   var_dump($info['history']);
 ```
+
+
+./vendor/bin/phpunit tests

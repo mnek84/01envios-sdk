@@ -1,19 +1,20 @@
 <?php
 
-
 namespace LogisticaSdk;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Request;
+use LogisticaSdk\Responses\ShipmentResponse;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Tightenco\Collect\Support\Collection;
 
 class Logistica
 {
-  const API = 'https://logistics-api.intrasistema.com/v1/';
-  #const API = 'http://logistics.local/v1/';
+  #const API = 'https://logistics-api.intrasistema.com/v1/';
+  const API = 'http://01envios.local/api/';
 
   private $token;
 
@@ -22,27 +23,19 @@ class Logistica
     $handler = HandlerStack::create();
 
     $extraParams = [
-      'token'=>$this->token
+      'Authorization'=>'Bearer '.$this->token
     ];
 
     $handler->push(Middleware::mapRequest(function (RequestInterface $request) use ($extraParams) {
 
       $uri  = $request->getUri();
-      $url = parse_url($request->getUri());
-
-      if (isset($url['query']))
-      {
-        $uri = $uri."&token=".$extraParams['token'];
-      }else{
-        $uri = $uri."?token=".$extraParams['token'];
-      }
-
-
+      $headers = $request->getHeaders();
+      $headers['Authorization'] = $extraParams['Authorization'];
 
       return new Request(
         $request->getMethod(),
         $uri,
-        $request->getHeaders(),
+        $headers,
         $request->getBody(),
         $request->getProtocolVersion()
       );
@@ -60,13 +53,12 @@ class Logistica
   {
     $body = $response->getBody()->getContents();
     $data =  json_decode((string) $body,true);
+    //var_dump($data);
 
     if ($response->getStatusCode()==200)
     {
       if (!isset($data['status']))
       {
-        //BAD RESPONSE
-        var_dump($body);
         throw new ApiException("Bad Response");
       }
 
@@ -74,16 +66,36 @@ class Logistica
       {
         if (isset($data['data']))
         {
-          return $data['data'];
+
+
+          if (count($data['data']) == count($data['data'], COUNT_RECURSIVE))
+          {
+            return Collection::make([$data['data']]);
+          }else{
+            return Collection::make($data['data']);
+          }
+
         }else{
           return true;
         }
+      }else{
+        if ($data['error']=="VALIDATION_FAILED")
+        {
+          throw new ValidationFailedException($data['error'],$data['errors']);
+        }else{
+          throw new ApiException($data['error']);
+        }
+      }
+    }else{
+      if ($response->getStatusCode()==401)
+      {
+
+        throw new AuthException($data['error']);
 
       }else{
         throw new ApiException($data['error']);
       }
-    }else{
-      throw new ApiException($data['error']);
+
     }
   }
 
@@ -256,5 +268,35 @@ class Logistica
     ]);
   }
 
+  public function getToken()
+  {
+    return $this->token;
+  }
+
+  public function me()
+  {
+    $userCollection =  $this->get('user');
+    return ((object)$userCollection->first());
+  }
+
+  /**
+   * @param $shipment
+   * @return ShipmentResponse
+   * @throws ApiException
+   */
+  public function createShipment($shipment)
+  {
+    return ShipmentResponse::createFromRequest($this,$this->post("shipment",$shipment));
+  }
+
+  /**
+   * @param $shipment
+   * @return ShipmentResponse
+   * @throws ApiException
+   */
+  public function getShipment($tracking)
+  {
+    return ShipmentResponse::createFromRequest($this,$this->get("shipment/".$tracking));
+  }
 
 }
