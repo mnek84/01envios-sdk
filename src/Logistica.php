@@ -13,8 +13,8 @@ use Tightenco\Collect\Support\Collection;
 
 class Logistica
 {
-  #const API = 'https://logistics-api.intrasistema.com/v1/';
-  const API = 'http://01envios.local/api/';
+  const API = 'https://app.01envios.com.ar/api/';
+  //const API = 'http://01envios.local/api/';
 
   private $token;
 
