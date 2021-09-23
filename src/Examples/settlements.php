@@ -1,7 +1,7 @@
 <?php
 include '../../vendor/autoload.php';
 
-$sdk = new \LogisticaSdk\Logistica();
+$sdk = new \EnviosSDK\Logistica();
 
 $sdk->setToken("2835754040");
 

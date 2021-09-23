@@ -1,7 +1,7 @@
 <?php
 
 
-namespace LogisticaSdk;
+namespace EnviosSDK;
 
 class Auth
 {

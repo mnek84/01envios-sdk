@@ -1,6 +1,6 @@
 <?php
 
-namespace LogisticaSdk;
+namespace EnviosSDK;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;

@@ -1,7 +1,7 @@
 <?php
 include '../../vendor/autoload.php';
 
-$sdk = new \LogisticaSdk\Logistica();
+$sdk = new \EnviosSDK\Logistica();
 
 $sdk->setToken("666");
 
@@ -22,7 +22,7 @@ try {
 
   dd($createdShipment->history);
 
-} catch (\LogisticaSdk\ApiException $e) {
+} catch (\EnviosSDK\ApiException $e) {
 
   die($e->getMessage());
 

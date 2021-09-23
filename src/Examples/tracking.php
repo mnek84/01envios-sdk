@@ -1,7 +1,7 @@
 <?php
 include '../../vendor/autoload.php';
 
-$sdk = new \LogisticaSdk\Logistica();
+$sdk = new \EnviosSDK\Logistica();
 
 $sdk->setToken("666");
 
@@ -18,10 +18,10 @@ foreach ($drivers as $driver)
 }
 
 
-} catch (\LogisticaSdk\AuthException $e) {
+} catch (\EnviosSDK\AuthException $e) {
   die("Fallo al autenticar");
 
-} catch (\LogisticaSdk\ApiException $e) {
+} catch (\EnviosSDK\ApiException $e) {
   die($e->getMessage());
 
 } catch (\Exception $e) {

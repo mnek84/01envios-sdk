@@ -1,7 +1,7 @@
 <?php
 include '../../vendor/autoload.php';
 
-$sdk = new \LogisticaSdk\Logistica();
+$sdk = new \EnviosSDK\Logistica();
 
 $sdk->setToken("666");
 
@@ -40,7 +40,7 @@ try {
     "warehouse_origin" => 1
   ];
 
-  $shipment = new \LogisticaSdk\Shipment($sdk);
+  $shipment = new \EnviosSDK\Shipment($sdk);
 
   $shipment->addBulk(1, 1, 1, 1);
 
@@ -72,12 +72,12 @@ try {
       dd($history);
    }
 
-} catch (\LogisticaSdk\ValidationFailedException $e) {
+} catch (\EnviosSDK\ValidationFailedException $e) {
   foreach($e->getErrorBag() as $error)
   {
       print $error[0].chr(13).chr(10);
   }
-} catch (\LogisticaSdk\ApiException $e) {
+} catch (\EnviosSDK\ApiException $e) {
 
   die($e->getMessage());
 

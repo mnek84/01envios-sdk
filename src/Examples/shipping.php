@@ -1,7 +1,7 @@
 <?php
 include '../../vendor/autoload.php';
 
-$sdk = new \LogisticaSdk\Logistica();
+$sdk = new \EnviosSDK\Logistica();
 
 $sdk->setToken("2835754040");
 
@@ -12,7 +12,7 @@ try {
   $info = $sdk->put("shipments/".$tracking,['status'=>10,'client_id'=>0,'comment'=>'']);
   die("cambiado correctamente");
 
-} catch (\LogisticaSdk\ApiException $e) {
+} catch (\EnviosSDK\ApiException $e) {
   die($e->getMessage());
 
 } catch (\Exception $e) {
