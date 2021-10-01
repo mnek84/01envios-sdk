@@ -2,11 +2,11 @@
 
 namespace EnviosSDK;
 
+use EnviosSDK\Responses\ShipmentResponse;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Request;
-use LogisticaSdk\Responses\ShipmentResponse;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Tightenco\Collect\Support\Collection;

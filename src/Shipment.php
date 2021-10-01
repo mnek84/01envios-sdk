@@ -2,7 +2,9 @@
 
 namespace EnviosSDK;
 
-use LogisticaSdk\Responses\ShipmentResponse;
+
+
+use EnviosSDK\Responses\ShipmentResponse;
 
 class Shipment
 {
