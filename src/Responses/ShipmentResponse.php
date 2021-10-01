@@ -1,8 +1,8 @@
 <?php
 
-namespace LogisticaSdk\Responses;
+namespace EnviosSDK\Responses;
 
-use LogisticaSdk\Logistica;
+use EnviosSDK\Logistica;
 
 class ShipmentResponse
 {
