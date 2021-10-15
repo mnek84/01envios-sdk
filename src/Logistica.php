@@ -299,4 +299,9 @@ class Logistica
     return ShipmentResponse::createFromRequest($this,$this->get("shipment/".$tracking));
   }
 
+  public function getShipmentByExternal($type,$val): ShipmentResponse
+  {
+    return ShipmentResponse::createFromRequest($this,$this->get("shipmentx/".$type."/".$val));
+  }
+
 }
