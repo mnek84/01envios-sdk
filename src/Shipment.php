@@ -1,13 +1,17 @@
 <?php
 
-namespace EnviosSDK;
+namespace RimoldSDK;
 
 
 
-use EnviosSDK\Responses\ShipmentResponse;
+use RimoldSDK\Responses\ShipmentResponse;
 
 class Shipment
 {
+  const EXTERNAL_TYPE_TIENDANUBE = "Tienda Nube";
+  const EXTERNAL_TYPE_LOCAL = "RIMOLD";
+  const EXTERNAL_TYPE_ML = "MercadoLibre";
+
   private $bulks;
   private $sdk;
   private $shipment;
@@ -32,11 +36,11 @@ class Shipment
 
 
   /**
-   * @param string $owner_fullname
+   * @param string $receiver
    */
-  public function setOwnerFullname(string $owner_fullname): Shipment
+  public function setReceiver(string $receiver): Shipment
   {
-    $this->shipment['owner_fullname'] = $owner_fullname;
+    $this->shipment['receiver'] = $receiver;
     return $this;
   }
 
@@ -59,14 +63,6 @@ class Shipment
     return $this;
   }
 
-  /**
-   * @param string $email
-   */
-  public function setEmail(string $email): Shipment
-  {
-    $this->shipment['email'] = $email;
-    return $this;
-  }
 
 
   /**
@@ -102,14 +98,14 @@ class Shipment
   }
 
   /**
-   * @param $address_comments
+   * @param $comments
    * @return Shipment
    */
-  public function setAddressComments($address_comments): Shipment
+  public function setAddressComments($comments): Shipment
   {
-    if (!$address_comments)
-      $address_comments = "";
-    $this->shipment['address_comments'] = $address_comments;
+    if (!$comments)
+      $comments = "";
+    $this->shipment['comments'] = $comments;
     return $this;
   }
 
@@ -184,18 +180,6 @@ class Shipment
 
 
   /**
-   * @param $phone
-   * @return Shipment
-   */
-  public function setPhone($phone): Shipment
-  {
-    if (!$phone)
-      $phone = "";
-    $this->shipment['phone'] = $phone;
-    return $this;
-  }
-
-  /**
    * @param integer $total_bulk
    * @return Shipment
    */
@@ -225,15 +209,6 @@ class Shipment
     return $this;
   }
 
-  /**
-   * @param string $warehouse_origin_id
-   * @return Shipment
-   */
-  public function setWarehouseOriginId(string $warehouse_origin_id): Shipment
-  {
-    $this->shipment['warehouse_origin_id'] = $warehouse_origin_id;
-    return $this;
-  }
 
   /**
    * @param bool $is_collect
@@ -277,5 +252,26 @@ class Shipment
   public function getShipment(): Shipment
   {
     return $this->shipment;
+
+  }
+
+  /**
+   * @param $email
+   * @return Shipment
+   */
+  public function setReceiverEmail(string $email)
+  {
+    $this->shipment['receiver_email'] = $email;
+    return $this;
+  }
+
+  /**
+   * @param string $mobile
+   * @return Shipment
+   */
+  public function setReceiverMobile(string $mobile)
+  {
+    $this->shipment['receiver_mobile'] = $mobile;
+    return $this;
   }
 }
