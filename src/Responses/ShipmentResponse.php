@@ -1,8 +1,8 @@
 <?php
 
-namespace EnviosSDK\Responses;
+namespace RimoldSDK\Responses;
 
-use EnviosSDK\Logistica;
+use RimoldSDK\Logistica;
 
 class ShipmentResponse
 {

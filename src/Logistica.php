@@ -1,8 +1,8 @@
 <?php
 
-namespace EnviosSDK;
+namespace RimoldSDK;
 
-use EnviosSDK\Responses\ShipmentResponse;
+use RimoldSDK\Responses\ShipmentResponse;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
@@ -13,8 +13,8 @@ use Tightenco\Collect\Support\Collection;
 
 class Logistica
 {
-  const API = 'https://app.01envios.com.ar/api/';
-  //const API = 'http://01envios.local/api/';
+  #const API = 'https://app.rimoldlogistica.com/api/';
+  const API = 'http://01envios.local/api/';
 
   private $token;
 
@@ -89,11 +89,13 @@ class Logistica
     }else{
       if ($response->getStatusCode()==401)
       {
-
         throw new AuthException($data['error']);
-
       }else{
-        throw new ApiException($data['error']);
+
+        if (isset($data['errors']))
+          throw new ApiException($data['message'],1,null,$response->getBody());
+
+        throw new AuthException(($data['error'] ?? $response->getBody()));
       }
 
     }

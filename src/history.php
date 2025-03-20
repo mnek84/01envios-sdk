@@ -2,7 +2,7 @@
 
 include '../vendor/autoload.php';
 
-$sdk = new \EnviosSDK\Logistica();
+$sdk = new \RimoldSDK\Logistica();
 
 $sdk->setToken("2835754040");
 

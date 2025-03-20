@@ -1,6 +1,6 @@
 <?php
 
-namespace EnviosSDK;
+namespace RimoldSDK;
 
 use \Exception;
 

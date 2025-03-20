@@ -1,7 +1,7 @@
 <?php
 
 
-namespace EnviosSDK;
+namespace RimoldSDK;
 
 class Auth
 {
